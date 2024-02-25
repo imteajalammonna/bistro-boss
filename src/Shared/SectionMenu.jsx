@@ -1,9 +1,12 @@
 
+import { Link, useParams } from "react-router-dom";
 import MenuItem from "./MenuItem";
 
 
-const SectionMenu = ({items}) => {
-   
+const SectionMenu = ({ items }) => {
+  const {category} = useParams();
+  console.log(category);
+  console.log(items);
     return (
         <div>
 
@@ -15,7 +18,7 @@ const SectionMenu = ({items}) => {
                     }
                 </div>
                 <div className="flex justify-center items-center">
-                    <button className="button mt-7">order your favorite food</button>
+                    <Link to={`/shop/${items.name}`}><button className="button mt-7">order your favorite food</button></Link>
                 </div>
             </div>
         </div>

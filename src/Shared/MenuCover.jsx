@@ -1,7 +1,9 @@
 import coverImg from "../assets/home/chef-service.jpg"
 const MenuCover = ({title, paragraph}) => {
+
+    
     return (
-        <div style={{backgroundImage: `url(${coverImg})`}} className="hero min-h-[75vh]">
+        <div style={{backgroundImage: `url(${coverImg})`}} className="hero min-h-[70vh]  my-14">
         <div className=""></div>
         <div className="hero-content text-white text-center">
             <div className="bg-opacity-45 py-24 px-56 bg-black">

@@ -60,11 +60,15 @@
     border-bottom: 3px solid rgb(63, 63, 63);
     transition: 0.3s ease;
 }
-
+ 
 .button:hover {
     background-color: rgb(255, 201, 7);
     color: #ffffff;
     transition: 0.3s ease;
+}
+.button:active{
+    transition: 0.1s ease;
+    border-bottom: 0px solid rgb(255, 255, 255);
 }
 
 .featured-item {
@@ -76,7 +80,7 @@
     background-size: cover;
 }
 
-.cover-img {
+.cover-img { 
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;

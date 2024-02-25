@@ -13,6 +13,7 @@ const Header = () => {
         <NavLink to="/dashboard" className="text-white px-3 py-2 rounded-md text-lg font-medium">Dashboard</NavLink>
         <NavLink to="/menu" className="text-white px-3 py-2 rounded-md text-lg font-medium">Our menu</NavLink>
         <NavLink to="/shop" className="text-white px-3 py-2 rounded-md text-lg font-medium">Our Shop</NavLink>
+        <NavLink to="/login" className="text-white px-3 py-2 rounded-md text-lg font-medium">Login</NavLink>
         <NavLink to="/cart" className=""><img className="w-14" src={cart} alt="" /></NavLink>
         <NavLink to="/profile" className="flex-col md:flex-row justify-center md:flex items-center text-white">Sign Out<img className="h-12 ml-3" src={user} alt="" /></NavLink>
     </>

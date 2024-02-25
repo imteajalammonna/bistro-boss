@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../../Shared/SectionTitle";
 import MenuItem from "../../Shared/MenuItem";
+import { Link } from "react-router-dom";
 
 const PopularMenu = () => {
     const [menu, setMenu] = useState([]);
@@ -24,7 +25,7 @@ const PopularMenu = () => {
                 }
             </div>
             <div className="flex items-center justify-center my-5">
-                <button className="button">View Full All</button>
+                <Link to={'/menu'}><button className="button">View Full Menu</button></Link>
             </div>
         </div>
     );

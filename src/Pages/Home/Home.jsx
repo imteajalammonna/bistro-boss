@@ -6,10 +6,14 @@ import coverImg from "../../assets/home/chef-service.jpg"
 import Calling from "./Calling";
 import Featured from "./Featured";
 import Reviews from "./Reviews";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Bistro Boss Restaurant</title>
+            </Helmet>
             <Banner></Banner>
             <Category></Category>
             <SectionCover coverImg={coverImg}></SectionCover>
