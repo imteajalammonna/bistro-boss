@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import cart from "../assets/icon/cart.png"
-import user from "../assets/icon/user2.png"
+import userImg from "../assets/icon/user2.png"
+import { AuthContext } from "../Providers/AuthProvider";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { user } = useContext(AuthContext);
+    console.log(user);
     const navLinks = <>
         <NavLink to="/" className="text-white px-3 py-2 rounded-md text-lg font-medium">Home</NavLink>
         <NavLink to="/contact" className="text-white px-3 py-2 rounded-md text-lg font-medium">Contact Us</NavLink>
@@ -15,7 +18,11 @@ const Header = () => {
         <NavLink to="/shop" className="text-white px-3 py-2 rounded-md text-lg font-medium">Our Shop</NavLink>
         <NavLink to="/login" className="text-white px-3 py-2 rounded-md text-lg font-medium">Login</NavLink>
         <NavLink to="/cart" className=""><img className="w-14" src={cart} alt="" /></NavLink>
-        <NavLink to="/profile" className="flex-col md:flex-row justify-center md:flex items-center text-white">Sign Out<img className="h-12 ml-3" src={user} alt="" /></NavLink>
+        <NavLink to="/profile" className="flex-col md:flex-row justify-center md:flex items-center text-white">{user?.photoURL ? <img className="h-12 ml-3 rounded-full " src={user?.photoURL} alt="" /> : <img
+            className="h-12 ml-3"
+            src={userImg}
+            alt="Profile"
+        />}</NavLink>
     </>
     return (
         <nav className="bg-[#151515] fixed bg-opacity-45 w-full z-10 ">

@@ -6,6 +6,7 @@ import SectionMenu from "../../Shared/SectionMenu";
 import SectionTitle from "../../Shared/SectionTitle";
 import coverIMG from "../../assets/menu/banner3.jpg"
 import pageCoverImg from "../../assets/menu/banner3.jpg"
+import "./Spinner.css";
 const OurMenu = () => {
     const [menu, loading] = useMenu();
     const popularItems = menu.filter(item => item.category === 'popular');
@@ -15,8 +16,12 @@ const OurMenu = () => {
     const saladItems = menu.filter(item => item.category === 'salad');
     console.log(popularItems);
     if (loading) {
-        return <div className="flex items-center justify-center max-h-screen">
-            <span className="loading loading-spinner text-secondary"></span>
+        return <div className="flex items-center justify-center min-h-screen"><svg className="pl" width="240" height="240" viewBox="0 0 240 240">
+        <circle className="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000"></circle>
+        <circle className="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000"></circle>
+        <circle className="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000"></circle>
+        <circle className="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000"></circle>
+    </svg>
         </div>
     }
     return (

@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 
 
 
-const Login = () => {
+const SignUp = () => {
     const [btnDisabled, setBtnDisabled] = useState(true);
 
-    const { signIn, setUser, signInWithGoogle } = useContext(AuthContext);
+    const { createUser, setUser, signInWithGoogle } = useContext(AuthContext);
 
     const captchaRef = useRef(null);
     useEffect(() => {
@@ -20,13 +20,15 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        console.log('Name:', name);
         console.log('Email:', email);
         console.log('Password:', password);
-        signIn(email, password)
+        createUser(email, password)
             .then(result => {
-                console.log(result.user);
+                console.log('user', result.user);
                 setUser(result.user)
             })
 
@@ -51,14 +53,25 @@ const Login = () => {
                 <form onSubmit={handleSubmit} className="rounded mb-4">
                     <div className="mb-2">
                         <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input
+                            className="shadow appearance-none border rounded w-1/2 py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="name"
+                            type="name"
+                            placeholder="Your Name"
+                        />
+                    </div>
+                    <div className="mb-2">
+                        <label className="label">
                             <span className="label-text">Email</span>
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-1/2 py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="email"
                             type="text"
-                            name="email"
                             placeholder="Email"
+                            name="Email"
                             required
                         />
                     </div>
@@ -69,13 +82,13 @@ const Login = () => {
                         <input
                             className="shadow appearance-none border rounded w-1/2 py-3 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                             id="password"
-                            name="password"
                             type="password"
+                            name="password"
                             placeholder="Password"
                             required
                         />
                     </div>
-                    <p className="ml-2">New to here? <Link to={'/signUp'} className="underline text-green-400 font-bold">SignUp here</Link></p>
+                    <p className="ml-2">Already have an account? <Link to={'/login'} className="underline text-green-500 font-bold">Login here</Link></p>
                     <div className="mb-6">
                         <label className="label">
                             <span className="label-text "><LoadCanvasTemplate></LoadCanvasTemplate></span>
@@ -83,7 +96,6 @@ const Login = () => {
                         <input ref={captchaRef}
                             className="shadow appearance-none border rounded w-1/2 py-3 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                             id="captcha"
-                            name="captcha"
                             type="captcha"
                             placeholder="Type here"
                             required
@@ -106,4 +118,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;

@@ -1,12 +1,10 @@
 
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MenuItem from "./MenuItem";
 
 
 const SectionMenu = ({ items }) => {
-  const {category} = useParams();
-  console.log(category);
-  console.log(items);
+//   const {category} = useParams();
     return (
         <div>
 

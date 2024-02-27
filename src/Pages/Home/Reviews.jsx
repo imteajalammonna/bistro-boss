@@ -1,5 +1,3 @@
-import person1 from "../../assets/others/Ellipse 2 (1).png";
-import person2 from "../../assets/others/Ellipse 2.png";
 import quote from "../../assets/others/quote 1.png";
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
@@ -9,18 +7,16 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Pagination } from 'swiper/modules';
 import SectionTitle from "../../Shared/SectionTitle";
+import { useEffect, useState } from "react";
 const Reviews = () => {
-
-    const reviews = [
-        { id: 1, Image: person1, name: 'Awalad Hossain', Comment: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", Ratings: 5, profession: "Buisnessman", },
-        { id: 2, Image: person2, name: 'Awalad Hossain', Comment: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", Ratings: 3, profession: "Buisnessman", },
-        { id: 3, Image: person2, name: 'Awalad Hossain', Comment: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", Ratings: 4, profession: "Buisnessman", },
-        { id: 4, Image: person2, name: 'Awalad Hossain', Comment: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", Ratings: 5, profession: "Buisnessman", },
-        { id: 5, Image: person2, name: 'Awalad Hossain', Comment: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", Ratings: 4, profession: "Buisnessman", },
-        { id: 6, Image: person2, name: 'Awalad Hossain', Comment: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", Ratings: 5, profession: "Buisnessman", },
-        { id: 7, Image: person2, name: 'Awalad Hossain', Comment: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", Ratings: 2, profession: "Buisnessman", },
-        { id: 8, Image: person2, name: 'Awalad Hossain', Comment: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ", Ratings: 3, profession: "Buisnessman", },
-    ]
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => setReviews(data));
+    }, [])
+   
+    
     return (
         <div className="space-y-4">
             <SectionTitle title={'Testimonials'} heading={'What Our Clients Say'}></SectionTitle>
@@ -37,7 +33,7 @@ const Reviews = () => {
                 {
                     reviews.map(review => <SwiperSlide key={review.id} className="mb-12 border-2 p-10 rounded-lg sm:grid sm:grid-cols-1 md:grid-cols-3">
                         <div className="flex space-x-8">
-                            <img src={review.Image} alt="Image" />
+                            <img className="w-[70px] h-[70px] rounded-full" src={review.Image} alt="Image" />
                             <div>
                                 <h3 className="text-2xl">{review.name}</h3>
                                 <h4 className="text-xl">{review.profession}</h4>
