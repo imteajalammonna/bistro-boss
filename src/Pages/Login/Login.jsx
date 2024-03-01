@@ -3,7 +3,8 @@ import loginBG from "../../assets/others/authentication.png"
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -12,7 +13,9 @@ const Login = () => {
     const [btnDisabled, setBtnDisabled] = useState(true);
 
     const { signIn, setUser, signInWithGoogle } = useContext(AuthContext);
-
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/";
     const captchaRef = useRef(null);
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -28,11 +31,12 @@ const Login = () => {
             .then(result => {
                 console.log(result.user);
                 setUser(result.user)
-            })
-
+            });
+        navigate(from, { replace: true });
     };
     const handleGoogleLogin = () => {
         signInWithGoogle();
+        navigate(from, { replace: true });
     }
     const handleValidate = () => {
         const user_captcha_value = captchaRef.current.value;
@@ -44,6 +48,7 @@ const Login = () => {
     }
     return (
         <div style={{ backgroundImage: `url(${loginBG})` }} className="flex justify-center items-center min-h-[80vh] py-32 bg-cover bg-no-repeat w-full">
+            <ToastContainer></ToastContainer>
             <div className="w-1/2 pl-32 pr-10">
                 <img src={loginImg} alt="Login" className="object-cover h-full w-full" />
             </div>

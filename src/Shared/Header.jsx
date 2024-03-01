@@ -2,27 +2,29 @@ import { useContext, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
-import cart from "../assets/icon/cart.png"
 import userImg from "../assets/icon/user2.png"
 import { AuthContext } from "../Providers/AuthProvider";
+import { FaCartPlus } from "react-icons/fa";
+import useCart from "../Hooks/useCart";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { user } = useContext(AuthContext);
-    console.log(user);
+    const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCart();
+    // console.log(user);
     const navLinks = <>
         <NavLink to="/" className="text-white px-3 py-2 rounded-md text-lg font-medium">Home</NavLink>
         <NavLink to="/contact" className="text-white px-3 py-2 rounded-md text-lg font-medium">Contact Us</NavLink>
         <NavLink to="/dashboard" className="text-white px-3 py-2 rounded-md text-lg font-medium">Dashboard</NavLink>
         <NavLink to="/menu" className="text-white px-3 py-2 rounded-md text-lg font-medium">Our menu</NavLink>
         <NavLink to="/shop" className="text-white px-3 py-2 rounded-md text-lg font-medium">Our Shop</NavLink>
-        <NavLink to="/login" className="text-white px-3 py-2 rounded-md text-lg font-medium">Login</NavLink>
-        <NavLink to="/cart" className=""><img className="w-14" src={cart} alt="" /></NavLink>
-        <NavLink to="/profile" className="flex-col md:flex-row justify-center md:flex items-center text-white">{user?.photoURL ? <img className="h-12 ml-3 rounded-full " src={user?.photoURL} alt="" /> : <img
+        {user ? <button className="text-white px-3 py-2 rounded-md text-lg font-medium uppercase" onClick={() => logOut()}> Logout</button> : <NavLink to="/login" className="text-white px-3 py-2 rounded-md text-lg font-medium">Login</NavLink>}
+        <NavLink to="/cart" className="pl-3 pr-6 py-2 inline-flex"><FaCartPlus className="text-3xl"></FaCartPlus> <div className="p-1 badge badge-secondary absolute ml-[22px]">+{cart.length}</div></NavLink>
+        <NavLink to="/profile" className="flex-col md:flex-row justify-center md:flex items-center text-white">{user ? <img className="rounded-full h-14 w-14 ml-3" src={user?.photoURL} alt="" /> : <img
             className="h-12 ml-3"
             src={userImg}
             alt="Profile"
-        />}</NavLink>
+        />}{user.email === 'imteajalammonna@gmail.com' && <svg viewBox="0 0 12 13" width="24" height="24" fill="currentColor" title="Verified account" className="text-[#0850ff] absolute ml-14 mt-8" ><title>Verified account</title><g transform="translate(-98 -917)"><path d="m106.853 922.354-3.5 3.5a.499.499 0 0 1-.706 0l-1.5-1.5a.5.5 0 1 1 .706-.708l1.147 1.147 3.147-3.147a.5.5 0 1 1 .706.708m3.078 2.295-.589-1.149.588-1.15a.633.633 0 0 0-.219-.82l-1.085-.7-.065-1.287a.627.627 0 0 0-.6-.603l-1.29-.066-.703-1.087a.636.636 0 0 0-.82-.217l-1.148.588-1.15-.588a.631.631 0 0 0-.82.22l-.701 1.085-1.289.065a.626.626 0 0 0-.6.6l-.066 1.29-1.088.702a.634.634 0 0 0-.216.82l.588 1.149-.588 1.15a.632.632 0 0 0 .219.819l1.085.701.065 1.286c.014.33.274.59.6.604l1.29.065.703 1.088c.177.27.53.362.82.216l1.148-.588 1.15.589a.629.629 0 0 0 .82-.22l.701-1.085 1.286-.064a.627.627 0 0 0 .604-.601l.065-1.29 1.088-.703a.633.633 0 0 0 .216-.819"></path></g></svg>}</NavLink>
     </>
     return (
         <nav className="bg-[#151515] fixed bg-opacity-45 w-full z-10 ">

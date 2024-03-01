@@ -15,7 +15,7 @@ const Foods = () => {
             id: 1,
             title: 'Dessert',
             content: <div className="grid grid-cols-1 gap-10 md:grid-cols-3 place-items-center">{
-                dessertsItems.map(item => <FoodCard key={item.id} item={item}></FoodCard>)
+                dessertsItems.map(item => <FoodCard key={item._id} item={item}></FoodCard>)
             }
             </div>,
         },
@@ -23,7 +23,7 @@ const Foods = () => {
             id: 2,
             title: 'Pizza',
             content: <div className="grid grid-cols-1 gap-10 md:grid-cols-3 container place-items-center">{
-                pizzaItems.map(item => <FoodCard key={item.id} item={item}></FoodCard>)
+                pizzaItems.map(item => <FoodCard key={item._id} item={item}></FoodCard>)
             }
             </div>,
         },
@@ -31,7 +31,7 @@ const Foods = () => {
             id: 3,
             title: 'Soup',
             content: <div className="grid grid-cols-1 gap-10 md:grid-cols-3 container place-items-center">{
-                soupItems.map(item => <FoodCard key={item.id} item={item}></FoodCard>)
+                soupItems.map(item => <FoodCard key={item._id} item={item}></FoodCard>)
             }
             </div>,
         },
@@ -39,7 +39,7 @@ const Foods = () => {
             id: 4,
             title: 'Salad',
             content: <div className="grid grid-cols-1 gap-10 md:grid-cols-3 container place-items-center">{
-                saladItems.map(item => <FoodCard key={item.id} item={item}></FoodCard>)
+                saladItems.map(item => <FoodCard key={item._id} item={item}></FoodCard>)
             }
             </div>,
         },
@@ -47,7 +47,7 @@ const Foods = () => {
             id: 5,
             title: 'Drinks',
             content: <div className="grid grid-cols-1 gap-10 md:grid-cols-3 container place-items-center">{
-                drinksItems.map(item => <FoodCard key={item.id} item={item}></FoodCard>)
+                drinksItems.map(item => <FoodCard key={item._id} item={item}></FoodCard>)
             }
             </div>,
         },
