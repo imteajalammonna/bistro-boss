@@ -1,9 +1,10 @@
 import Swal from "sweetalert2";
 import UseAuth from "../Hooks/UseAuth";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "toastify-js/src/toastify.css";
+import Toastify from 'toastify-js'
 import useAxiosSecure from "../Hooks/UseAxiosSecure";
+import useCart from "../Hooks/useCart";
 
 
 const FoodCard = ({ item }) => {
@@ -12,11 +13,9 @@ const FoodCard = ({ item }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const axiosSecure = useAxiosSecure();
-    const handleFoodAddToCart = (food) => {
-        console.log(item._id);
+    const [, refetch] = useCart();
+    const handleFoodAddToCart = () => {
         if (user && user?.email) {
-            //
-            console.log(user.email, food);
             const cartItem = {
                 menuId: _id,
                 email: user.email,
@@ -26,11 +25,17 @@ const FoodCard = ({ item }) => {
             }
             axiosSecure.post("/carts", cartItem)
                 .then(res => {
-                    console.log(res.data);
                     if (res.data.insertedId) {
-                        toast(`${name} added to your cart!`)
+                        Toastify({
+                            text: "Wow! You have added to cart.",
+                            className: "success",
+                            style: {
+                                background: "linear-gradient(to right, #ffc907, #01ff0a)",
+                            }
+                        }).showToast();
+                        refetch();
                     }
-                })
+                });
         }
         else {
             Swal.fire({
@@ -51,14 +56,13 @@ const FoodCard = ({ item }) => {
     }
     return (
         <div className="card w-96 h-[500px] bg-base-100 shadow-xl">
-            <ToastContainer />
             <img src={image} alt="Food Image" className="rounded-t-md relative" />
             <p className="absolute top-4 right-6 bg-black text-white p-2 rounded-md">${price}</p>
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions">
-                    <button onClick={() => handleFoodAddToCart(item)} className="button bg-gray-200">Add to Cart</button>
+                    <button onClick={handleFoodAddToCart} className="button bg-gray-200">Add to Cart</button>
                 </div>
             </div>
         </div>
