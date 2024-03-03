@@ -14,7 +14,6 @@ const OurMenu = () => {
     const drinksItems = menu.filter(item => item.category === 'drinks');
     const soupItems = menu.filter(item => item.category === 'soup');
     const saladItems = menu.filter(item => item.category === 'salad');
-    console.log(popularItems);
     if (loading) {
         return <div className="flex items-center justify-center min-h-screen"><svg className="pl" width="240" height="240" viewBox="0 0 240 240">
         <circle className="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000"></circle>

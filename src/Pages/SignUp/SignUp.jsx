@@ -4,21 +4,23 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+import "toastify-js/src/toastify.css";
+import Toastify from 'toastify-js'
 
 
 const SignUp = () => {
     const [btnDisabled, setBtnDisabled] = useState(true);
 
-    const { createUser, setUser, signInWithGoogle } = useContext(AuthContext);
+    const { createUser, signInWithGoogle } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/";
     const captchaRef = useRef(null);
     useEffect(() => {
-        loadCaptchaEnginge(6);
+        loadCaptchaEnginge();
     }, []);
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,16 +32,24 @@ const SignUp = () => {
         console.log('Email:', email);
         console.log('Password:', password);
         createUser(email, password)
-            .then(result => {
-                console.log('user', result.user);
-                setUser(result.user)
-                toast("Login successfully!");
+            .then(() => {
+                Toastify({
+                    text: "Login Successfully.",
+                    style: {
+                        background: "linear-gradient(to right, #ffc907, #01ff0a)",
+                    }
+                }).showToast();
+                navigate(from, { replace: true });
             });
-        navigate(from, { replace: true });
 
     };
     const handleGoogleLogin = () => {
-        signInWithGoogle();
+        signInWithGoogle(); Toastify({
+            text: "Login Successfully.",
+            style: {
+                background: "linear-gradient(to right, #ffc907, #01ff0a)",
+            }
+        }).showToast();
         navigate(from, { replace: true });
     }
     const handleValidate = () => {
@@ -107,11 +117,11 @@ const SignUp = () => {
                             placeholder="Type here"
                             required
                         /> <br />
-                        <button onClick={handleValidate} className="button ml-32">Validate</button>
+                        <button onBlur={handleValidate} className="button ml-32">Validate</button>
                     </div>
                     <div className="flex w-1/2  items-center justify-center">
                         <input
-                            disabled={btnDisabled}
+                            disabled={!btnDisabled}
                             className="btn-secondary btn w-2/3 active:border-b-[3px] active:border-b-white"
                             type="submit"
                         />

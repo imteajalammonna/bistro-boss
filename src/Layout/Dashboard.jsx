@@ -1,4 +1,4 @@
-import { FaCartPlus, FaHome } from "react-icons/fa";
+import { FaCalendarAlt, FaCalendarCheck, FaCartPlus, FaHome, FaList, FaPhone } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 
 
@@ -10,17 +10,24 @@ const Dashboard = () => {
                     <span className="text-black text-xl md:text-2xl cormorant-garamond-semibold mb-0">BISTRO BOSS</span>
                     <span className="text-black text-lg md:text-2xl cormorant-garamond-medium">Restaurant</span>
                 </div>
-                <div className="flex flex-col">
-                    <NavLink to="/dashboard" className="flex items-center"><FaHome className="mx-2"></FaHome>Home</NavLink>
-                    <NavLink to="/dashboard" className="flex items-center"><FaHome className="mx-2"></FaHome>Home</NavLink>
-                    <NavLink to="/dashboard/cart" className="flex items-center"><FaCartPlus className="mx-2"></FaCartPlus>My Cart</NavLink>
+                <div className="flex flex-col space-y-3 text-lg font-medium">
                     <NavLink to="/dashboard/" className="flex items-center"><FaHome className="mx-2"></FaHome>Home</NavLink>
+                    <NavLink to="/dashboard/reservation" className="flex items-center"><FaCalendarAlt className="mx-2"></FaCalendarAlt> Reservation</NavLink>
+                    <NavLink to="/dashboard/cart" className="flex items-center"><FaCartPlus className="mx-2"></FaCartPlus>My Cart</NavLink>
+                    <NavLink to="/dashboard/bookings" className="flex items-center"><FaCalendarCheck className="mx-2"></FaCalendarCheck>My Bookings</NavLink>
+                    <div className="divider"></div>
+                    <div className="flex flex-col space-y-3 text-lg font-medium divide-gray-700">
+                        <NavLink to="/" className="flex items-center"><FaHome className="mx-2"></FaHome>Home</NavLink>
+                        <NavLink to="/menu" className=" flex items-center "><FaList className="mx-2"></FaList>Menu</NavLink>
+                        <NavLink to="/shop" className=" flex items-center "><FaCartPlus className="mx-2"></FaCartPlus>Shop</NavLink>
+                        <NavLink to="/contact" className=" flex items-center "><FaPhone className="mx-2"></FaPhone>Contact Us</NavLink>
+                    </div>
                 </div>
             </div>
             <div className="w-full">
                 <Outlet></Outlet>
             </div>
-        </div>
+        </div >
     );
 };
 
