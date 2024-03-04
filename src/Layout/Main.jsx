@@ -6,7 +6,7 @@ import { useState } from "react";
 function Main() {
     let container = useState('');
     const location = useLocation();
-    if (location.pathname === "/dashboard" || location.pathname === "/dashboard/") {
+    if (location.pathname === "/dashboard" || location.pathname === "/dashboard") {
         container = ""
     }
     else {

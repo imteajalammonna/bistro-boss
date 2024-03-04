@@ -37,6 +37,11 @@
     font-style: normal;
     letter-spacing: .3px;
 }
+.text-style {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: bold;
+    letter-spacing: .3px;
+}
 
 
 .active {

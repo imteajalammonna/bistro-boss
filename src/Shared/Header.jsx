@@ -15,7 +15,7 @@ const Header = () => {
     const navLinks = <>
         <NavLink to="/" className="text-white px-3 py-2 rounded-md text-lg font-medium">Home</NavLink>
         <NavLink to="/contact" className="text-white px-3 py-2 rounded-md text-lg font-medium">Contact Us</NavLink>
-        <NavLink to="/dashboard" className="text-white px-3 py-2 rounded-md text-lg font-medium">Dashboard</NavLink>
+        <NavLink to="/dashboard/" className="text-white px-3 py-2 rounded-md text-lg font-medium">Dashboard</NavLink>
         <NavLink to="/menu" className="text-white px-3 py-2 rounded-md text-lg font-medium">Our menu</NavLink>
         <NavLink to="/shop" className="text-white px-3 py-2 rounded-md text-lg font-medium">Our Shop</NavLink>
         {user ? <button className="text-white px-3 py-2 rounded-md text-lg font-medium uppercase" onClick={() => logOut()}> Logout</button> : <NavLink to="/login" className="text-white px-3 py-2 rounded-md text-lg font-medium">Login</NavLink>}

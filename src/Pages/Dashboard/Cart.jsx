@@ -42,24 +42,23 @@ const Cart = () => {
     return (
         <div>
             <SectionTitle title={'WANNA ADD MORE?'} heading={'My Cart'}></SectionTitle>
-            <div className="bg-slate-200 m-20 rounded-t-2xl">
-                <div className="flex item-center justify-between text-3xl p-5">
-                    <h2>Total Orders: {cart.length}</h2>
-                    <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
-                    <button className="button text-xl !py-2">Pay</button>
+            <div className="bg-slate-200 mx-20 px-8 rounded-t-2xl">
+                <div className="flex item-center justify-between px-14 text-style text-3xl p-5">
+                    <h2 className="text-style text-4xl font-bold">Total Orders: <span className="text-3xl font-normal">{cart.length}</span></h2>
+                    <h2 className="text-style text-4xl font-bold">Total Price: <span className="text-3xl font-normal">${totalPrice.toFixed(2)}</span></h2>
+                    <button className="button bg-slate-300 text-xl !py-2">Pay</button>
                 </div>
                 <div className="flex">
                     <div className="overflow-x-auto w-full">
-                        <table className="table">
+                        <table className="table text-center">
                             {/* head */}
-                            <thead className="">
-                                <tr className="text-xl text-white !w-3/4 bg-gray-400 !my-20">
-                                    <th>Serial</th>
+                            <thead className="rounded-t-2xl">
+                                <tr className="text-xl !rounded-t-2xl text-white bg-gray-400 rounded-3xl ">
+                                    <th>Serial No.</th>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Action</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,7 +68,7 @@ const Cart = () => {
                                             {idx + 1}
                                         </th>
                                         <td>
-                                            <div className="flex items-center gap-3">
+                                            <div className="flex items-center justify-center gap-3">
                                                 <div className="avatar">
                                                     <div className="mask mask-squircle w-12 h-12">
                                                         <img src={item.image} />

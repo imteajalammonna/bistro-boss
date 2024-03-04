@@ -9,11 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import "toastify-js/src/toastify.css";
 import Toastify from 'toastify-js'
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import SocialLogin from "../../Components/SocialLogin";
 
 
 const SignUp = () => {
     const [btnDisabled, setBtnDisabled] = useState(true);
-
+    const axiosPublic = useAxiosPublic();
     const { createUser, signInWithGoogle } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
@@ -33,13 +35,23 @@ const SignUp = () => {
         console.log('Password:', password);
         createUser(email, password)
             .then(() => {
-                Toastify({
-                    text: "Login Successfully.",
-                    style: {
-                        background: "linear-gradient(to right, #ffc907, #01ff0a)",
-                    }
-                }).showToast();
-                navigate(from, { replace: true });
+                const userInfo = {
+                    name: name,
+                    email: email,
+                }
+                axiosPublic.post("/users", userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user');
+                            Toastify({
+                                text: "Login Successfully.",
+                                style: {
+                                    background: "linear-gradient(to right, #ffc907, #01ff0a)",
+                                }
+                            }).showToast();
+                            navigate(from, { replace: true });
+                        }
+                    })
             });
 
     };
@@ -127,6 +139,7 @@ const SignUp = () => {
                         />
                     </div>
                 </form>
+                <SocialLogin></SocialLogin>
                 <div className="flex items-center justify-center w-1/2">
                     <button onClick={handleGoogleLogin} className="rounded-full p-5 bg-cyan-400">Google</button>
                 </div>
