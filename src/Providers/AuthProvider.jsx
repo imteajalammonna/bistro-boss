@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../Firebase/firebase.config";
-import { toast } from "react-toastify";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -20,14 +19,8 @@ const AuthProvider = ({ children }) => {
     }
     const signInWithGoogle = () => {
         setLoading(true)
-        signInWithPopup(auth, googleProvider)
-            .then((result) => {
-                console.log(result);
-                toast("Login successfully!")
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        return signInWithPopup(auth, googleProvider)
+            
     }
     const logOut = () => {
         setLoading(true);

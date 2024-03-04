@@ -4,7 +4,7 @@ import useMenu from "../../Hooks/useMenu";
 
 
 const Foods = () => {
-    const [menu] = useMenu();
+    const [menu, loading] = useMenu();
     const dessertsItems = menu.filter(item => item.category === 'dessert');
     const pizzaItems = menu.filter(item => item.category === 'pizza');
     const soupItems = menu.filter(item => item.category === 'soup');
@@ -51,7 +51,15 @@ const Foods = () => {
             }
             </div>,
         },
-    ];
+    ]; if (loading) {
+        return <div className="flex items-center justify-center min-h-screen">
+            <div className="loader">
+                <span className="loader-text">loading</span>
+                <span className="load"></span>
+            </div>
+
+        </div>
+    }
 
     return (
         <div className="mb-20">

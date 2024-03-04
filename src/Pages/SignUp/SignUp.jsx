@@ -6,7 +6,6 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
 import "toastify-js/src/toastify.css";
 import Toastify from 'toastify-js'
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -16,7 +15,7 @@ import SocialLogin from "../../Components/SocialLogin";
 const SignUp = () => {
     const [btnDisabled, setBtnDisabled] = useState(true);
     const axiosPublic = useAxiosPublic();
-    const { createUser, signInWithGoogle } = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/";
@@ -55,15 +54,6 @@ const SignUp = () => {
             });
 
     };
-    const handleGoogleLogin = () => {
-        signInWithGoogle(); Toastify({
-            text: "Login Successfully.",
-            style: {
-                background: "linear-gradient(to right, #ffc907, #01ff0a)",
-            }
-        }).showToast();
-        navigate(from, { replace: true });
-    }
     const handleValidate = () => {
         const user_captcha_value = captchaRef.current.value;
         if (validateCaptcha(user_captcha_value)) {
@@ -140,9 +130,6 @@ const SignUp = () => {
                     </div>
                 </form>
                 <SocialLogin></SocialLogin>
-                <div className="flex items-center justify-center w-1/2">
-                    <button onClick={handleGoogleLogin} className="rounded-full p-5 bg-cyan-400">Google</button>
-                </div>
             </div>
         </div>
     );
