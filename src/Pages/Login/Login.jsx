@@ -32,8 +32,8 @@ const Login = () => {
             .then(result => {
                 console.log(result.user);
                 setUser(result.user)
+                navigate(from, { replace: true });
             });
-        navigate(from, { replace: true });
     };
     const handleValidate = () => {
         const user_captcha_value = captchaRef.current.value;

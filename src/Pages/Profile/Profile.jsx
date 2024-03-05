@@ -9,7 +9,7 @@ const Profile = () => {
     const { displayName, photoURL, email } = user || [];
     const handleLogOut = () => {
         logOut();
-    }
+    };
     return (
         <div className="container min-h-[80vh] pt-28 mx-auto p-4">
             <header className="App-header">
